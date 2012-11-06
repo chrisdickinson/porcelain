@@ -1,0 +1,26 @@
+{
+  "name": "porcelain",
+  "version": "0.0.1",
+  "description": "node.js helpers for plate templating language",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "plate": "~1.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node test/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chrisdickinson/porcelain.git"
+  },
+  "keywords": [
+    "plate",
+    "porcelain"
+  ],
+  "author": "Chris Dickinson <chris@neversaw.us>",
+  "license": "MIT"
+}
