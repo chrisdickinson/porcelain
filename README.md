@@ -2,6 +2,61 @@
 
 A tiny helper library for using plate templates in Node point JS.
 
+```javascript
+
+// myproject/index.js
+var porcelain = require('porcelain')
+  , loader
+
+// automatically configures plate
+// to load templates from `myproject/templates/`
+// and returns a nice loader function.
+loader = porcelain()
+
+// or you can specify your own directory,
+// relative to the current file (`myproject/mytemplates`)
+loader = porcelain('mytemplates')
+
+// or multiple directories...
+loader = porcelain('mytemplates', 'yourtemplates')
+
+// or absolute directories.
+loader = porcelain('/var/www/templates/lolwat.html')
+
+// the loader can be used like a typical node.js callback function:
+loader('my_template.html', function(err, template) {
+    ...
+})
+
+
+// or to create readable streams suitable for piping
+// to responses!
+
+http.createServer(function(request, response) {
+  var output = loader.createReadStream('my_template.html')
+  output.pipe(response)
+  output.code = 200
+  output.context.variable = 3
+})
+
+// and they can be paused, if you need to do some extra work.
+
+http.createServer(function(request, response) {
+  var stream = loader.createReadStream('my_template.html')
+
+  stream.pause()
+  request.db.get('some query', got_data)
+  return stream.pipe(response)
+
+  function got_data(err, data) {
+    stream.context.result = data
+    stream.code = err ? 404 : 200
+    stream.resume()
+  }
+})
+
+```
+
 ## Installation
 
 `npm install porcelain`
