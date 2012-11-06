@@ -2,6 +2,10 @@
 
 A tiny helper library for using plate templates in Node point JS.
 
+## Installation
+
+`npm install porcelain`
+
 ## API
 
 ### require('porcelain') -> porcelain
@@ -54,3 +58,6 @@ The headers (as a an object literal) to be set when piping to a
 
 Defaults to `{'content-type': 'text/html'}`.
 
+## License
+
+MIT
